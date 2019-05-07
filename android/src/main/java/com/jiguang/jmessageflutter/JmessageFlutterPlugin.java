@@ -513,13 +513,7 @@ public class JmessageFlutterPlugin implements MethodCallHandler {
 
       if (params.has("extras")) {
         Map<String, String> extras = fromJson(params.getJSONObject("extras"));
-        Iterator it = extras.entrySet().iterator();
-        while (it.hasNext()) {
-          Map.Entry pair = (Map.Entry)it.next();
-          System.out.println(pair.getKey() + " = " + pair.getValue());
-          myInfo.setUserExtras(pair.getKey().toString(), pair.getValue().toString());
-          it.remove(); // avoids a ConcurrentModificationException
-        }
+        myInfo.setUserExtras(extras);
       }
 
     } catch (JSONException e) {
